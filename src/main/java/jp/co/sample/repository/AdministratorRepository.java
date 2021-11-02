@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import jp.co.sample.domain.Administrator;
@@ -35,9 +37,12 @@ public class AdministratorRepository {
 	public void insert(Administrator administrator) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
 		
-		String updateSql = "INSERT INTO administrators(name, mail_address, password) VALUES(:name, :mailAddress, :password);";
+		String insertSql = "INSERT INTO administrators(name, mail_address, password) VALUES(:name, :mailAddress, :password);";
 		
-		template.update(updateSql, param);
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		String[] keyColumnNames = {"id"};
+		template.update(insertSql,param,keyHolder,keyColumnNames);
+		administrator.setId(keyHolder.getKey().intValue());
 	}
 	
 	/**
