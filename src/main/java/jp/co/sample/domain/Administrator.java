@@ -1,7 +1,7 @@
 package jp.co.sample.domain;
 
 /**
- * adominstratorのドメイン
+ * 管理者情報を表すドメイン
  * 
  * @author naramasato
  *
