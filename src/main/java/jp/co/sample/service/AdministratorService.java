@@ -29,4 +29,8 @@ public class AdministratorService {
 	public void insert(Administrator adoAdministrator) {
 		administratorRepository.insert(adoAdministrator);
 	}
+	
+	public Administrator login(String mailAddress, String password) {
+		return administratorRepository.findByMailAddressAndPassword(mailAddress, password);
+	}
 }

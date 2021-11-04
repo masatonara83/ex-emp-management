@@ -8,17 +8,18 @@ package jp.co.sample.form;
  */
 public class LoginForm {
 
-	//ログインの名前
-	private String name;
+	//ログインのメールアドレス
+	private String mailAddress;
 	//ログインのパスワード
 	private String password;
 	
 	
-	public String getName() {
-		return name;
+	
+	public String getMailAddress() {
+		return mailAddress;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMailAddress(String mailAddress) {
+		this.mailAddress = mailAddress;
 	}
 	public String getPassword() {
 		return password;
@@ -26,11 +27,12 @@ public class LoginForm {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 	@Override
 	public String toString() {
-		return "LoginForm [name=" + name + ", password=" + password + "]";
+		return "LoginForm [mailAddress=" + mailAddress + ", password=" + password + "]";
 	}
+	
+	
 	
 	
 }
