@@ -80,7 +80,12 @@ public class EmployeeRepository {
 				+ "characteristics = :characteristics, "
 				+ "dependents_count = :dependentsCount "
 				+ "WHERE id = :id;";
+		try {
+			template.update(updateSql, param);
+		} catch (Exception e) {
+			// TODO: handle exception
+			
+		}
 		
-		template.update(updateSql, param);
 	}
 }

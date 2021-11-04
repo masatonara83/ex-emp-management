@@ -40,7 +40,7 @@
 					<p class="navbar-text navbar-right">
 						<span th:text="${session.administratorName + 'さん'}">山田さん</span>こんにちは！
 						&nbsp;&nbsp;&nbsp;
-						<a href="../administrator/login.html" class="navbar-link">ログアウト</a>
+						<a th:href="@{/logout}" class="navbar-link">ログアウト</a>
 					</p>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -98,7 +98,7 @@
 							      入社日
 							    </th>
 							    <td>
-							      <span th:text="${employee.hireDate}">2012/11/29</span>
+							      <span th:text="${#dates.format(employee.hireDate,'yyyy-MM-dd')}">2012/11/29</span>
 							    </td>
 							  </tr>
 							  <tr>
