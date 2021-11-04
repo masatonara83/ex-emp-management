@@ -19,10 +19,14 @@ public class TestEmployeeController {
 	
 	@RequestMapping("/execute")
 	public String excute() {
-		Employee employee = new Employee();
-		employee.setId(25);
-		employee.setName("工藤新一");
-		emp.update(employee);
+		Employee employees = new Employee();
+		employees = emp.load(25);
+		
+		System.out.println(employees);
+		
+		employees.setName("工藤新一");
+		employees.setId(25);
+		System.out.println(employees);
 		
 		return "/administrator/finished";
 	}
