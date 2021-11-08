@@ -1,5 +1,8 @@
 package jp.co.sample.form;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 /**
  * ログイン時に使うフォーム
  * 
@@ -9,8 +12,11 @@ package jp.co.sample.form;
 public class LoginForm {
 
 	//ログインのメールアドレス
+	@Email(message="メールアドレスを正しく入力してください。")
+	@NotBlank(message="メールアドレスが入力されていません。")
 	private String mailAddress;
 	//ログインのパスワード
+	@NotBlank(message="パスワードが入力されていません。")
 	private String password;
 	
 	

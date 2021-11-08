@@ -6,6 +6,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -52,13 +54,19 @@ public class AdministratorController {
 	}
 	
 	@RequestMapping("/login")
-	public String login(LoginForm form, Model model) {
+	public String login(@Validated LoginForm form, 
+			BindingResult result,
+			Model model) {
+		
+		if(result.hasErrors()) {
+			return toLogin();
+		}
 		
 		
 		Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
 		
 		if(administrator == null) {
-			session.setAttribute("error", "メールアドレスまたはパスワードが不正です");
+			model.addAttribute("error", "メールアドレスまたはパスワードが間違っています");
 			return "/administrator/login";
 		} else {
 			session.setAttribute("administratorName", administrator.getName());
@@ -73,7 +81,13 @@ public class AdministratorController {
 	}
 	
 	@RequestMapping("/insert")
-	public String insert(InsertAdministratorForm form) {
+	public String insert(@Validated InsertAdministratorForm form,
+			BindingResult result, Model model) {
+		
+		if(result.hasErrors()) {
+			return toInsert();
+		}
+		
 		Administrator administrator = new Administrator();
 		
 		//administratorにformのオブジェクトをコピー
